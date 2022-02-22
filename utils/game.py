@@ -62,3 +62,12 @@ class Board:
         print(
             f"Turn: {self.turn_count}, active cards : {self.active_cards} , history : {len(self.history_cards)}\n"
         )
+
+    def __str__(self) -> str:
+        """Returns a string representation of the class"""
+        ret = ""
+        ret += f"Turn: {self.turn_count}, Active_Cards: {self.active_cards}, History: {len(self.history_cards)}\n"
+        for player in self.players:
+            ret += str(player)
+            ret += "\n"
+        return ret

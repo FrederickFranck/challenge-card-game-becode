@@ -25,6 +25,7 @@ class Symbol:
             self.color: str = "black"
 
     def __str__(self) -> str:
+        """Returns a string representation of the class"""
         if self.color == "red":
             return f"{_C_RED}{self.icon}{_C_END}"
         else:
@@ -50,12 +51,14 @@ class Card(Symbol):
         self.value: str = value
 
     def __str__(self) -> str:
+        """Returns a string representation of the class"""
         if self.color == "red":
             return f"{_C_RED}{self.value:2}{self.icon}{_C_END} "
         else:
             return f"{_C_BLACK}{self.value:2}{self.icon}{_C_END} "
 
     def __repr__(self) -> str:
+        """Returns a string representation of the class"""
         if self.color == "red":
             return f"{_C_RED}{self.value:2}{self.icon}{_C_END} "
         else:

@@ -1,12 +1,13 @@
-from msilib.schema import Class
 from utils.game import Board
 from utils.player import Player
 
 player_names = ["Andre", "Barry", "Carla", "Frederick"]
 players = []
 
-
 def main():
+    """Creates a board with all the players in <player_names>
+    and starts the game
+    """
     for name in player_names:
         players.append(Player(name))
     board = Board(players)

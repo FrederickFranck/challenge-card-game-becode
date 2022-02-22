@@ -43,6 +43,7 @@ class Player:
         self.number_of_cards = len(self.cards)
 
     def __str__(self) -> str:
+        """Returns a string representation of the class"""
         return f"{self.name:15} Hand:{str(self.cards)}"
 
 
@@ -81,6 +82,7 @@ class Deck:
                     player.deal(self.draw())
 
     def __str__(self) -> str:
+        """Returns a string representation of the class"""
         ret = ""
         for card in self.cards:
             ret += str(card)
