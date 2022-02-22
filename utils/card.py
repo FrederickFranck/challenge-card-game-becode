@@ -13,7 +13,7 @@ class Symbol:
         icon: A single character string out of the list _icons
         color: A string based on the icon either "red" or "black"
     """
-    _icons = ["♥", "♦", "♣", "♠"]
+    _icons = ["♣", "♠", "♦", "♥"]
     
 
     def __init__(self, icon: str) -> None:
@@ -54,8 +54,11 @@ class Card(Symbol):
 
 
     #Base comparisons on the index of the _values list e.g. higher in the list means higher value
+    #if the values are equal compare the suits , lowest to highest again (♣ < ♠ < ♦ < ♥)
     def __lt__(self,other) -> bool:
         """smaller then operator"""
+        if(Card._values.index(self.value) == Card._values.index(other.value)):
+            return Symbol._icons.index(self.icon) < Symbol._icons.index(other.icon)
         return Card._values.index(self.value) < Card._values.index(other.value)
 
     def __eq__(self,other) -> bool:
@@ -64,6 +67,8 @@ class Card(Symbol):
 
     def __gt__(self,other) -> bool:
         """greater then operator"""
+        if(Card._values.index(self.value) == Card._values.index(other.value)):
+            return Symbol._icons.index(self.icon) > Symbol._icons.index(other.icon)
         return Card._values.index(self.value) > Card._values.index(other.value)
 
 
