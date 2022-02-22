@@ -3,7 +3,7 @@ from utils.player import Player
 
 player_names = ["Andre", "Barry", "Carla", "Frederick"]
 players = []
-
+print("WOW")
 def main():
     """Creates a board with all the players in <player_names>
     and starts the game
