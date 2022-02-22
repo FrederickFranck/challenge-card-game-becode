@@ -12,9 +12,10 @@ class Player:
         turn_count: an Integer representing the number of turns the player took
         number_of_cards: an Integer representing the amount of cards in a player's hand
         history: a List of Cards that contains all cards previously played by the player
+        is_human: a boolean which represents if the player is a human or robot
     """
 
-    def __init__(self, name: str) -> None:
+    def __init__(self, name: str,is_human=False) -> None:
         """Creates a Player with an empty list of cards, the amount of cards in hand
         a turn_count on 0 and an empty history"""
         self.cards: List[Card] = []
@@ -22,11 +23,12 @@ class Player:
         self.number_of_cards: int = len(self.cards)
         self.history: List[Card] = []
         self.name: str = name
+        self.is_human: bool = is_human
 
     def play(self) -> Card:
         """Randomly pick a card for the player to play
         and returns that card"""
-        if self.cards:
+        if (self.cards and (not self.is_human)):
             random_card_index = randint(0, self.number_of_cards - 1)
             chosen_card = self.cards.pop(random_card_index)
             self.turn_count += 1
@@ -34,8 +36,19 @@ class Player:
             self.history.append(chosen_card)
             print(f"{self.name:10} {self.turn_count:2} played: {str(chosen_card)}")
             return chosen_card
+        
+        elif(self.cards and self.is_human):
+            pass
+
         else:
             return None
+
+    def choose_card(self) -> Card:
+        """This function will display a players current hand and ask which card they want to play"""
+        hand = ""
+        for index, card in enumerate(self.cards):
+            #TODO
+
 
     def deal(self, card: Card) -> None:
         """Deals a new card to the players hand"""

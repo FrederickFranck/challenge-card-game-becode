@@ -11,6 +11,8 @@ clone the repository to your machine
 git clone -b nice-to-haves https://github.com/FrederickFranck/challenge-card-game-becode.git
 ```
 
+install TOML
+
 ### Usage
 run the main file to start the game
 ```bash

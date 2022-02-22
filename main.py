@@ -1,9 +1,16 @@
+import imp
 from utils.game import Board
 from utils.player import Player
+from toml import load
 
-player_names = ["Andre", "Barry", "Carla", "Frederick"]
+
+parsed_toml = load("config.toml")
+
+   
+player_names = parsed_toml["Players"]["names"]
+human_players = parsed_toml["Players"]["humans"]
 players = []
-print("WOW")
+
 def main():
     """Creates a board with all the players in <player_names>
     and starts the game
@@ -16,3 +23,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    
