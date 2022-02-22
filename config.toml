@@ -1,4 +1,4 @@
 [Config]
 players = ["Andre", "Barry", "Carla", "Frederick"]
-humans = 1
+humans = 4
 trump = true

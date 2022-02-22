@@ -63,7 +63,7 @@ class Card(Symbol):
 
     def __eq__(self,other) -> bool:
         """equals operator"""
-        return Card._values.index(self.value) == Card._values.index(other.value)
+        return (Card._values.index(self.value) == Card._values.index(other.value)) and (Symbol._icons.index(self.icon) == Symbol._icons.index(other.icon))
 
     def __gt__(self,other) -> bool:
         """greater then operator"""
