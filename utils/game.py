@@ -42,7 +42,8 @@ class Board:
 
         while self.can_play():
             for card in self.active_cards:
-                self.history_cards.append(card)
+                if card is not None:
+                    self.history_cards.append(card)
             self.active_cards = []
             self.play_turn()
 

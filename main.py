@@ -1,4 +1,5 @@
 import imp
+from typing import List
 from utils.game import Board
 from utils.player import Player
 from toml import load
@@ -7,9 +8,9 @@ from toml import load
 parsed_toml = load("config.toml")
 
    
-player_names = parsed_toml["Players"]["names"]
+player_names: List[str] = parsed_toml["Players"]["names"]
 human_players = parsed_toml["Players"]["humans"]
-players = []
+players: List[Player] = []
 
 def main():
     """Creates a board with all the players in <player_names>
@@ -17,6 +18,8 @@ def main():
     """
     for name in player_names:
         players.append(Player(name))
+    for i in range(human_players):
+        players[i].make_human()
     board = Board(players)
     board.start_game()
 

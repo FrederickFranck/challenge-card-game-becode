@@ -1,3 +1,4 @@
+from tkinter import N
 from typing import List
 from .card import Card
 from random import randint
@@ -15,6 +16,8 @@ class Player:
         is_human: a boolean which represents if the player is a human or robot
     """
 
+    _icons = ["🤖","😀"]
+
     def __init__(self, name: str,is_human=False) -> None:
         """Creates a Player with an empty list of cards, the amount of cards in hand
         a turn_count on 0 and an empty history"""
@@ -28,27 +31,48 @@ class Player:
     def play(self) -> Card:
         """Randomly pick a card for the player to play
         and returns that card"""
-        if (self.cards and (not self.is_human)):
-            random_card_index = randint(0, self.number_of_cards - 1)
-            chosen_card = self.cards.pop(random_card_index)
+        if (self.cards):
+            if(not self.is_human):
+                random_card_index = randint(0, self.number_of_cards - 1)
+                chosen_card = self.cards.pop(random_card_index)
+            
+            elif(self.is_human):
+                chosen_card = self.cards.pop(self.choose_card())
+
             self.turn_count += 1
             self.number_of_cards -= 1
             self.history.append(chosen_card)
-            print(f"{self.name:10} {self.turn_count:2} played: {str(chosen_card)}")
+            print(f"{self.name:10}{Player._icons[self.is_human]} {self.turn_count:2} played: {str(chosen_card)}")
             return chosen_card
-        
-        elif(self.cards and self.is_human):
-            pass
-
         else:
             return None
+    
+    def make_human(self) -> None:
+        """Turns a robot player into a human player"""
+        self.is_human = True
 
     def choose_card(self) -> Card:
         """This function will display a players current hand and ask which card they want to play"""
         hand = ""
+        choice = -1
         for index, card in enumerate(self.cards):
-            #TODO
+            hand += f" {index:2}:{card} "
+        hand +="\n"
+        print(f"Player: {self.name}")
+        while True:
+            try:
+                print(hand)
+                choice = int(input(f"Which card do you want to play ?(0-{len(self.cards)-1})"))
+            except ValueError:
+                print("Incorrect input please try again")
+                continue
+            if(choice < 0 or choice >= len(self.cards)):
+                print("Incorrect input please try again")
 
+            else:
+                break
+        
+        return choice   
 
     def deal(self, card: Card) -> None:
         """Deals a new card to the players hand"""
