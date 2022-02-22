@@ -3,7 +3,13 @@ A Simple Card Game
 
 DESCRIPTION
 
+//TODO
+explain:
+    Interactive
+    Points system
 
+//TODO 
+game over state
 
 ### Installation
 clone the repository to your machine
