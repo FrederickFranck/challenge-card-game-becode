@@ -1,4 +1,5 @@
 from tkinter import N
+from tkinter.messagebox import NO
 from typing import List
 from .card import Card
 from random import randint
@@ -14,6 +15,7 @@ class Player:
         number_of_cards: an Integer representing the amount of cards in a player's hand
         history: a List of Cards that contains all cards previously played by the player
         is_human: a boolean which represents if the player is a human or robot
+        points: and integer which represents the amount of points the player currently has
     """
 
     _icons = ["🤖","😀"]
@@ -27,6 +29,7 @@ class Player:
         self.history: List[Card] = []
         self.name: str = name
         self.is_human: bool = is_human
+        self.points: int = 0
 
     def play(self) -> Card:
         """Randomly pick a card for the player to play
@@ -42,7 +45,7 @@ class Player:
             self.turn_count += 1
             self.number_of_cards -= 1
             self.history.append(chosen_card)
-            print(f"{self.name:10}{Player._icons[self.is_human]} {self.turn_count:2} played: {str(chosen_card)}")
+            print(f"{self.name:10}{Player._icons[self.is_human]} Score:{self.points:2} played: {str(chosen_card)}")
             return chosen_card
         else:
             return None
@@ -78,6 +81,12 @@ class Player:
         """Deals a new card to the players hand"""
         self.cards.append(card)
         self.number_of_cards = len(self.cards)
+
+    def add_point(self) -> None:
+        self.points += 1
+
+    def get_points(self) -> int:
+        return self.points
 
     def __str__(self) -> str:
         """Returns a string representation of the class"""

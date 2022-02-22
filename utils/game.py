@@ -1,8 +1,8 @@
 from typing import List
 from .player import Player
 from .player import Deck
-from .card import Card
-
+from .card import Card, Symbol
+from random import randint
 
 class Board:
     """Class that represents the entire game state
@@ -14,13 +14,18 @@ class Board:
         history_cards: a List of cards that contains all cards played excluding <active_cards>
     """
 
-    def __init__(self, players: List[Player]) -> None:
+    def __init__(self, players: List[Player],trump_enabled=False) -> None:
         """Creates a Board class with a list of players , an empty history and a turn_count at 0"""
         self.players: List[Player] = players
         self.turn_count: int = 0
         self.active_cards: List[Card] = []
         self.history_cards: List[Card] = []
         self.deck: Deck = Deck()
+        self.trump_enabled: bool = trump_enabled
+        if self.trump_enabled:
+            self.trump = Symbol(Symbol._icons[randint(0,3)])
+            print(f"Trump is {self.trump}")
+        self.trump: str = None
 
     def can_play(self) -> bool:
         """Checks if there is any player who can still play cards"""
@@ -63,6 +68,16 @@ class Board:
         print(
             f"Turn: {self.turn_count}, active cards : {self.active_cards} , history : {len(self.history_cards)}\n"
         )
+        self.count_points()
+        
+
+    def count_points(self) -> None:
+        """The player who played the card with the highest value gets a point"""
+
+        winner = self.players[(self.active_cards.index(max(self.active_cards)))]
+        winner.add_point()
+        print(f"{winner.name} has scored this round")
+
 
     def __str__(self) -> str:
         """Returns a string representation of the class"""

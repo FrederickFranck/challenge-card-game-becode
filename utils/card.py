@@ -1,5 +1,4 @@
-_icons = ["♥", "♦", "♣", "♠"]
-_values = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
+
 
 # Escape codes to print the cards with colors
 _C_BLACK = "\033[30;47m"
@@ -14,6 +13,8 @@ class Symbol:
         icon: A single character string out of the list _icons
         color: A string based on the icon either "red" or "black"
     """
+    _icons = ["♥", "♦", "♣", "♠"]
+    
 
     def __init__(self, icon: str) -> None:
         """Creates Symbol with icon and color based of the icon"""
@@ -43,12 +44,28 @@ class Card(Symbol):
         color: A string based on the icon either "red" or "black"
 
     """
+    _values = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"]
 
     def __init__(self, icon: str, value: str) -> None:
         """Creates Card with with icon and color based of the icon
         and assigns a value"""
         super().__init__(icon)
         self.value: str = value
+
+
+    #Base comparisons on the index of the _values list e.g. higher in the list means higher value
+    def __lt__(self,other) -> bool:
+        """smaller then operator"""
+        return Card._values.index(self.value) < Card._values.index(other.value)
+
+    def __eq__(self,other) -> bool:
+        """equals operator"""
+        return Card._values.index(self.value) == Card._values.index(other.value)
+
+    def __gt__(self,other) -> bool:
+        """greater then operator"""
+        return Card._values.index(self.value) > Card._values.index(other.value)
+
 
     def __str__(self) -> str:
         """Returns a string representation of the class"""

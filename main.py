@@ -8,8 +8,9 @@ from toml import load
 parsed_toml = load("config.toml")
 
    
-player_names: List[str] = parsed_toml["Players"]["names"]
-human_players = parsed_toml["Players"]["humans"]
+player_names: List[str] = parsed_toml["Config"]["players"]
+human_players = parsed_toml["Config"]["humans"]
+trump = parsed_toml["Config"]["trump"]
 players: List[Player] = []
 
 def main():
@@ -20,7 +21,7 @@ def main():
         players.append(Player(name))
     for i in range(human_players):
         players[i].make_human()
-    board = Board(players)
+    board = Board(players,trump)
     board.start_game()
 
 
