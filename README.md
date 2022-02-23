@@ -48,4 +48,4 @@ max_points = 3
 
 
 ## Versions
-There is also another version available with only the must have features see [here](https://github.com/FrederickFranck/challenge-card-game-becode/tree/must-haves).
+There is also another version available with only the must have features see [here](https://github.com/FrederickFranck/challenge-card-game-becode/tree/must-haves#challenge-card-game-becode-must-haves).
