@@ -12,20 +12,17 @@ class Board:
         turn_count: an Integer which counts how many turns have passed
         active_cards: a List of cards that contains the last card played by each player
         history_cards: a List of cards that contains all cards played excluding <active_cards>
+        max_points: an Integer which stops the game if a player reaches that much points
     """
 
-    def __init__(self, players: List[Player],trump_enabled=False) -> None:
+    def __init__(self, players: List[Player],max_points) -> None:
         """Creates a Board class with a list of players , an empty history and a turn_count at 0"""
         self.players: List[Player] = players
         self.turn_count: int = 0
         self.active_cards: List[Card] = []
         self.history_cards: List[Card] = []
         self.deck: Deck = Deck()
-        self.trump_enabled: bool = trump_enabled
-        if self.trump_enabled:
-            self.trump = Symbol(Symbol._icons[randint(0,3)])
-            print(f"Trump is {self.trump}")
-        self.trump: str = None
+        self.max_points:int = max_points
 
     def can_play(self) -> bool:
         """Checks if there is any player who can still play cards"""
@@ -51,6 +48,10 @@ class Board:
                     self.history_cards.append(card)
             self.active_cards = []
             self.play_turn()
+            if(self.game_over() != None):
+                print(f"The Game is over, {self.game_over().name} has Won 🥳")
+                exit()
+
 
         print(f"The Game ended, Everyone is out of cards")
 
@@ -76,8 +77,15 @@ class Board:
 
         winner = self.players[(self.active_cards.index(max(self.active_cards)))]
         winner.add_point()
-        print(f"{winner.name} has scored this round")
+        print(f"{winner.name} has scored this round, their total points are : {winner.get_points()}")
 
+
+
+    def game_over(self) -> Player:
+        for player in self.players:
+            if (player.get_points() == self.max_points):
+                return player
+        return None
 
     def __str__(self) -> str:
         """Returns a string representation of the class"""
