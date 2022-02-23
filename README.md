@@ -28,4 +28,4 @@ player_names = ["Andre", "Barry", "Carla", "Frederick"]
 ```
 
 ## Versions
-There is also another version available with more features see [here](https://github.com/FrederickFranck/challenge-card-game-becode/tree/nice-to-haves).
+There is also another version available with more features see [here](https://github.com/FrederickFranck/challenge-card-game-becode/tree/nice-to-haves#challenge-card-game-becode-nice-to-haves).
