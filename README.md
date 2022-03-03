@@ -27,5 +27,10 @@ If you want to change the names or amount of players open the *main.py* file and
 player_names = ["Andre", "Barry", "Carla", "Frederick"]
 ```
 
+## Example Screenshot
+
+![Example](/docs/images/example.png)
+
+
 ## Versions
 There is also another version available with more features see [here](https://github.com/FrederickFranck/challenge-card-game-becode/tree/nice-to-haves#challenge-card-game-becode-nice-to-haves).
