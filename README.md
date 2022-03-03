@@ -46,6 +46,10 @@ This will change how many points people need to get to win the game
 max_points = 3
 ```
 
+#### Example Screenshot
+
+![Example](./docs/images/example_2.png)
+
 
 ## Versions
 There is also another version available with only the must have features see [here](https://github.com/FrederickFranck/challenge-card-game-becode/tree/must-haves#challenge-card-game-becode-must-haves).
